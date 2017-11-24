@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+    <!-- 引入config.properties属性文件 -->
+    <context:property-placeholder location="classpath:config/config.properties"/>
+    <context:component-scan base-package="com.redis"/>
+    <!--连接池配置类-->
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxTotal" value="${jedisConfig.maxTotal}"></property>
+        <property name="maxIdle" value="${jedisConfig.maxIdle}"></property>
+        <property name="minIdle" value="${jedisConfig.minIdle}"></property>
+        <property name="maxWaitMillis" value="${jedisConfig.maxWaitMillis}"></property>
+        <property name="minEvictableIdleTimeMillis" value="${jedisConfig.minEvictableIdleTimeMillis}"></property>
+        <property name="numTestsPerEvictionRun" value="${jedisConfig.numTestsPerEvictionRun}"></property>
+        <property name="timeBetweenEvictionRunsMillis" value="${jedisConfig.timeBetweenEvictionRunsMillis}"></property>
+        <property name="testOnBorrow" value="${jedisConfig.testOnBorrow}"></property>
+        <property name="testOnReturn" value="${jedisConfig.testOnReturn}"></property>
+        <property name="testWhileIdle" value="${jedisConfig.testWhileIdle}"></property>
+    </bean>
+
+    <!--连接池配置-->
+    <bean id="jedisConnectionFactory"
+          class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
+          destroy-method="destroy">
+        <property name="hostName" value="${redis.host}"/>
+        <property name="port" value="${redis.port}"/>
+        <property name="timeout" value="${redis.timeout}"/>
+        <property name="database" value="${redis.database}"/>
+        <property name="password" value=""/>
+        <property name="usePool" value="${redis.usePool}"/>
+        <property name="poolConfig" ref="jedisPoolConfig"/>
+    </bean>
+
+    <bean id="objectMapper" class="com.fasterxml.jackson.databind.ObjectMapper">
+    </bean>
+
+    <bean id="stringRedisSerializer"
+          class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
+
+    <!-- redisTemplate操作模板 -->
+    <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+        <property name="connectionFactory" ref="jedisConnectionFactory"/>
+        <property name="keySerializer" ref="stringRedisSerializer"/>
+        <property name="valueSerializer" ref="stringRedisSerializer"/>
+        <property name="hashKeySerializer" ref="stringRedisSerializer"/>
+        <property name="hashValueSerializer" ref="stringRedisSerializer"/>
+    </bean>
+
+    <bean id="commonCache" class="com.redis.cache.CommonCache">
+        <property name="name" value="forTest"/>
+        <property name="loadOnStartUp" value="true"/>
+    </bean>
+
+    <bean id="studentCache" class="com.redis.cache.StudentCache">
+        <!--二级目录名称-->
+        <property name="name" value="studentCache"/>
+        <!--缓存的数据类型-->
+        <property name="entityClass" value="com.redis.dto.Student"/>
+    </bean>
+
+    <bean id="cacheManagerImpl" class="com.redis.manager.CacheManagerImpl">
+        <property name="caches">
+            <list>
+                <ref bean="studentCache"/>
+            </list>
+        </property>
+    </bean>
+</beans>
