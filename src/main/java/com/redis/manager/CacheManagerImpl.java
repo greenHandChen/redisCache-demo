@@ -27,10 +27,10 @@ public class CacheManagerImpl implements CacheManager {
     public void setCaches(List<Cache> caches) {
         this.caches = caches;
         if (this.caches != null && this.caches.size() > 0) {
-            for (Cache cache : this.caches) {
+            caches.forEach(cache -> {
                 this.mapCache.put(cache.getName(), cache);
                 cache.init();
-            }
+            });
         }
     }
 
