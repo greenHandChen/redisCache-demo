@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="56ebfbb5-cbd8-4230-87d7-8b9b4b94462a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/redis/RedisTest.java" afterPath="$PROJECT_DIR$/src/main/java/com/redis/RedisTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/redis/cache/StudentCache.java" afterPath="$PROJECT_DIR$/src/main/java/com/redis/cache/StudentCache.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/redis/manager/CacheManagerImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/redis/manager/CacheManagerImpl.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -946,8 +942,16 @@
       <workItem from="1511235296577" duration="21299000" />
       <workItem from="1511313748695" duration="7504000" />
       <workItem from="1511923710810" duration="645000" />
-      <workItem from="1511932860279" duration="1800000" />
+      <workItem from="1511932860279" duration="1820000" />
     </task>
+    <task id="LOCAL-00001" summary="update">
+      <created>1511934678939</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1511934678939</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -956,7 +960,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34178000" />
+    <option name="totallyTimeSpent" value="34198000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1041,7 +1045,9 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <MESSAGE value="update" />
+    <option name="LAST_COMMIT_MESSAGE" value="update" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
