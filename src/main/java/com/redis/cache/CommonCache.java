@@ -55,10 +55,10 @@ public class CommonCache<T> implements Cache<T> {
        * @Data 2017/11/22 0022
        */
     @Override
-    public void setValue(String key, T filed) {
+    public void setValue(String field, T value) {
         redisTemplate.execute((RedisCallback) connection -> {
             try {
-                hSet(connection, key, filed);
+                hSet(connection, field, value);
             } catch (JsonProcessingException e) {
                 e.printStackTrace();
             }
